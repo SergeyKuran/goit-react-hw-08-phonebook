@@ -4,7 +4,7 @@ import { addContact } from 'redux/contacts/fetch';
 import { getContacts } from 'redux/contacts/selector';
 import Notiflix from 'notiflix';
 import { Button, Form, Input } from './ContactForm.styled';
-import { Label } from 'components/pages/Contacts/Contacts.styled';
+import { Label } from 'pages/Contacts/Contacts.styled';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');

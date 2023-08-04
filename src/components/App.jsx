@@ -6,11 +6,11 @@ import { refreshUser } from 'redux/auth/fetch';
 import { Layout } from './Layout';
 
 const Contacts = lazy(() => {
-  import('./pages/Contacts/Contacts');
+  import('../pages/Contacts/Contacts');
 });
-const Home = lazy(() => import('./pages/Home/Home'));
-const Login = lazy(() => import('./pages/Login/Login'));
-const Registration = lazy(() => import('./pages/Registration/Registration'));
+const Home = lazy(() => import('../pages/Home/Home'));
+const Login = lazy(() => import('../pages/Login/Login'));
+const Registration = lazy(() => import('../pages/Registration/Registration'));
 
 export const App = () => {
   const dispatch = useDispatch();
