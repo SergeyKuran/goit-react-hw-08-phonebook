@@ -8,39 +8,40 @@ import {
   InputGroup,
   Stack,
 } from '@chakra-ui/react';
+import { nanoid } from '@reduxjs/toolkit';
 
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { registerUser } from 'redux/auth/fetch';
 
 const Registration = () => {
   const [show, setShow] = useState(false);
   const dispath = useDispatch();
-  const navigate = useNavigate();
-  const { token } = useSelector(state => state.auth);
 
   const handleClick = () => setShow(!show);
 
   const onSubmitForm = evt => {
     evt.preventDefault();
 
+    const form = evt.currentTarget;
+
     const user = {
-      email: evt.target.elements.email.value,
-      name: evt.target.elements.name.value,
-      password: evt.target.elements.password.value,
+      email: form.elements.email.value,
+      name: form.elements.name.value,
+      password: form.elements.password.value,
     };
 
     dispath(registerUser(user));
-    token && navigate('/login');
+    form.reset();
   };
 
   return (
     <>
       <form onSubmit={onSubmitForm}>
         <FormControl isRequired>
-          <FormLabel>Full name</FormLabel>
+          <FormLabel htmlFor={nanoid}>Full name</FormLabel>
           <Input
+            id={nanoid}
             type="text"
             name="name"
             pattern="^[A-Za-z\u0080-\uFFFF ']+$"
@@ -49,17 +50,19 @@ const Registration = () => {
             required
             placeholder="Please enter your name"
           />
-          <FormLabel>Email address</FormLabel>
+          <FormLabel htmlFor={nanoid}>Email address</FormLabel>
           <Input
+            id={nanoid}
             type="email"
             name="email"
             autoComplete="on"
             placeholder="Please enter your email"
           />
           <FormHelperText>We'll never share your email.</FormHelperText>
-          <FormLabel>Password</FormLabel>
+          <FormLabel htmlFor={nanoid}>Password</FormLabel>
           <InputGroup size="md">
             <Input
+              id={nanoid}
               name="password"
               pr="4.5rem"
               type={show ? 'text' : 'password'}

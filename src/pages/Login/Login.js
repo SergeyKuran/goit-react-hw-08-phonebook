@@ -10,28 +10,27 @@ import {
 } from '@chakra-ui/react';
 
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { logInUser } from 'redux/auth/fetch';
 
 const Login = () => {
   const [show, setShow] = useState(false);
   const dispath = useDispatch();
-  const navigate = useNavigate();
-  const { token } = useSelector(state => state.auth);
 
   const handleClick = () => setShow(!show);
 
   const onSubmitForm = evt => {
     evt.preventDefault();
 
+    const form = evt.currentTarget;
+
     const user = {
-      email: evt.target.elements.email.value,
-      password: evt.target.elements.password.value,
+      email: form.elements.email.value,
+      password: form.elements.password.value,
     };
 
     dispath(logInUser(user));
-    if (token) navigate('/contacts');
+    form.reset();
   };
 
   return (

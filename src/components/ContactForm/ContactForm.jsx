@@ -5,6 +5,7 @@ import { getContacts } from 'redux/contacts/selector';
 import Notiflix from 'notiflix';
 import { Button, Form, Input } from './ContactForm.styled';
 import { Label } from 'pages/Contacts/Contacts.styled';
+import { ContactList } from 'components/ContactList/ContactList';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -48,34 +49,37 @@ export const ContactForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Label>
-        Name
-        <Input
-          type="text"
-          name="name"
-          value={name}
-          pattern="^[A-Za-z\u0080-\uFFFF ']+$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          onChange={handleChange}
-        />
-      </Label>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Label>
+          Name
+          <Input
+            type="text"
+            name="name"
+            value={name}
+            pattern="^[A-Za-z\u0080-\uFFFF ']+$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+            onChange={handleChange}
+          />
+        </Label>
 
-      <Label>
-        Number
-        <Input
-          type="tel"
-          name="number"
-          value={number}
-          pattern="^(\+?[0-9.\(\)\-\s]*)$"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          onChange={handleChange}
-        />
-      </Label>
+        <Label>
+          Number
+          <Input
+            type="tel"
+            name="number"
+            value={number}
+            pattern="^(\+?[0-9.\(\)\-\s]*)$"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            onChange={handleChange}
+          />
+        </Label>
 
-      <Button type="submit">Add contacts</Button>
-    </Form>
+        <Button type="submit">Add contacts</Button>
+      </Form>
+      <ContactList />
+    </>
   );
 };
