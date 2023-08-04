@@ -7,11 +7,10 @@ import {
   Button,
   InputGroup,
   Stack,
-  Switch,
 } from '@chakra-ui/react';
 
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from 'redux/auth/fetch';
 
@@ -19,6 +18,7 @@ const Registration = () => {
   const [show, setShow] = useState(false);
   const dispath = useDispatch();
   const navigate = useNavigate();
+  const { token } = useSelector(state => state.auth);
 
   const handleClick = () => setShow(!show);
 
@@ -32,7 +32,7 @@ const Registration = () => {
     };
 
     dispath(registerUser(user));
-    navigate('/login');
+    token && navigate('/login');
   };
 
   return (
@@ -74,7 +74,6 @@ const Registration = () => {
           <FormHelperText>We'll never share your password.</FormHelperText>
         </FormControl>
         <Stack>
-          <Switch colorScheme="green" />
           <Button type="submit" colorScheme="blackAlpha" w="100px">
             Register
           </Button>

@@ -6,14 +6,19 @@ import {
   InputGroup,
   InputRightElement,
   Button,
+  Stack,
 } from '@chakra-ui/react';
+
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { logInUser } from 'redux/auth/fetch';
 
 const Login = () => {
   const [show, setShow] = useState(false);
   const dispath = useDispatch();
+  const navigate = useNavigate();
+  const { token } = useSelector(state => state.auth);
 
   const handleClick = () => setShow(!show);
 
@@ -26,6 +31,7 @@ const Login = () => {
     };
 
     dispath(logInUser(user));
+    if (token) navigate('/contacts');
   };
 
   return (
@@ -56,6 +62,11 @@ const Login = () => {
           </InputGroup>
           <FormHelperText>We'll never share your password.</FormHelperText>
         </FormControl>
+        <Stack>
+          <Button type="submit" colorScheme="blackAlpha" w="100px">
+            Sign in
+          </Button>
+        </Stack>
       </form>
     </>
   );
