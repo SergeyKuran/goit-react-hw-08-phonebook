@@ -13,8 +13,11 @@ export const Li = styled.li`
 export const Button = styled.button`
   font-size: 13px;
   padding: 1px 5px;
+  color: black;
+  border: 1px solid black;
+  background-color: rgb(226, 232, 240);
+  transition: all 0.5s ease-out;
   border-radius: 10px;
-  border: 1px solid;
 
   cursor: pointer;
 

@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   max-width: 960px;
   margin: 0 auto;
-  padding: 8px 0;
-  margin-bottom: 16px;
   border-bottom: 1px solid black;
 `;
 
@@ -21,6 +20,11 @@ export const Nav = styled(NavLink)`
     color: aliceblue;
     transition: all 0.5s ease-out;
     background-color: green;
+  }
+
+  &.active {
+    color: black;
+    background-color: yellow;
   }
 `;
 

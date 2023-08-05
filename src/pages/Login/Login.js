@@ -7,6 +7,7 @@ import {
   InputRightElement,
   Button,
   Stack,
+  Flex,
 } from '@chakra-ui/react';
 
 import { useState } from 'react';
@@ -35,38 +36,53 @@ const Login = () => {
 
   return (
     <>
-      <form onSubmit={onSubmitForm}>
-        <FormControl isRequired>
-          <FormLabel>Email address</FormLabel>
-          <Input
-            type="email"
-            name="email"
-            autoComplete="on"
-            placeholder="Please enter your email"
-          />
-          <FormHelperText>We'll never share your email.</FormHelperText>
-          <FormLabel>Password</FormLabel>
-          <InputGroup size="md">
+      <Flex align="center" justify="center" flexDirection="column">
+        <form onSubmit={onSubmitForm}>
+          <FormControl
+            isRequired
+            maxWidth="450px"
+            border="1px solid black"
+            padding={5}
+            borderRadius={8}
+          >
+            <FormLabel>Email address</FormLabel>
             <Input
-              pr="4.5rem"
-              name="password"
-              type={show ? 'text' : 'password'}
-              placeholder="Please enter password"
+              type="email"
+              name="email"
+              autoComplete="on"
+              placeholder="Please enter your email"
             />
-            <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={handleClick}>
-                {show ? 'Hide' : 'Show'}
+            <FormHelperText>We'll never share your email.</FormHelperText>
+            <FormLabel>Password</FormLabel>
+            <InputGroup size="md">
+              <Input
+                pr="4.5rem"
+                name="password"
+                type={show ? 'text' : 'password'}
+                placeholder="Please enter password"
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                  {show ? 'Hide' : 'Show'}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+            <FormHelperText>We'll never share your password.</FormHelperText>
+            <Stack>
+              <Button
+                type="submit"
+                colorScheme="green"
+                w="100px"
+                ml="auto"
+                mr="auto"
+                mt={5}
+              >
+                Sign in
               </Button>
-            </InputRightElement>
-          </InputGroup>
-          <FormHelperText>We'll never share your password.</FormHelperText>
-        </FormControl>
-        <Stack>
-          <Button type="submit" colorScheme="blackAlpha" w="100px">
-            Sign in
-          </Button>
-        </Stack>
-      </form>
+            </Stack>
+          </FormControl>
+        </form>
+      </Flex>
     </>
   );
 };

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { refreshUser } from 'redux/auth/fetch';
 import { Layout } from './Layout';
+import { Loader } from './Loader/Loader';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 
@@ -23,7 +24,7 @@ export const App = () => {
   return (
     <>
       {isRefreshing ? (
-        <b>Loading...</b>
+        <Loader />
       ) : (
         <Routes>
           <Route path="/" element={<Layout />}>
