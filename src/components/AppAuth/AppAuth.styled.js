@@ -11,6 +11,7 @@ export const Header = styled.header`
   margin-bottom: 16px;
   border-bottom: 1px solid black;
 `;
+
 export const Nav = styled(NavLink)`
   text-decoration: none;
   padding: 5px 10px;
@@ -26,5 +27,4 @@ export const Nav = styled(NavLink)`
 export const Div = styled.div`
   display: flex;
   gap: 15px;
-  }
 `;
