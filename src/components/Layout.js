@@ -1,4 +1,4 @@
-import { Container } from './App.styled';
+import { Container } from './Layout.styled';
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { AppAuth } from './AppAuth/AppAuth';

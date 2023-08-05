@@ -1,13 +1,13 @@
 import { useAuth } from 'hooks/useAuth';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { refreshUser } from 'redux/auth/fetch';
 import { Layout } from './Layout';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
 
-const Contacts = lazy(() => {
-  import('../pages/Contacts/Contacts');
-});
+const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
 const Home = lazy(() => import('../pages/Home/Home'));
 const Login = lazy(() => import('../pages/Login/Login'));
 const Registration = lazy(() => import('../pages/Registration/Registration'));
@@ -15,21 +15,10 @@ const Registration = lazy(() => import('../pages/Registration/Registration'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
-  const { isLoginIn } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-
-  const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
-    return isLoginIn ? <Navigate to={redirectTo} /> : Component;
-  };
-
-  const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
-    const shouldRedirect = !isLoginIn && !isRefreshing;
-
-    return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
-  };
 
   return (
     <>
@@ -40,24 +29,24 @@ export const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route
-              path="/register"
+              path="register"
               element={
                 <RestrictedRoute
                   redirectTo="/contacts"
-                  component={<Registration />}
+                  component={Registration}
                 />
               }
             />
             <Route
-              path="/login"
+              path="login"
               element={
-                <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+                <RestrictedRoute redirectTo="/contacts" component={Login} />
               }
             />
             <Route
-              path="/contacts"
+              path="contacts"
               element={
-                <PrivateRoute redirectTo="/contacts" component={<Contacts />} />
+                <PrivateRoute redirectTo="/login" component={Contacts} />
               }
             />
           </Route>

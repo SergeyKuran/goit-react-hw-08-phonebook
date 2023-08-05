@@ -11,6 +11,16 @@ export const Li = styled.li`
 `;
 
 export const Button = styled.button`
-  padding: 2px 10px;
+  font-size: 13px;
+  padding: 1px 5px;
   border-radius: 10px;
+  border: 1px solid;
+
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: green;
+    transition: all 0.5s ease-out;
+  }
 `;
