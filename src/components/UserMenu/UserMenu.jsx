@@ -10,7 +10,7 @@ export const UserMenu = () => {
 
   return (
     <Div>
-      <p>Hello, ${user.name}</p>
+      <p>Hello, {user.name}</p>
       <Button
         type="button"
         onClick={() => {

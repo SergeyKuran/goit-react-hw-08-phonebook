@@ -8,7 +8,6 @@ import {
   InputGroup,
   Stack,
 } from '@chakra-ui/react';
-import { nanoid } from '@reduxjs/toolkit';
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -39,9 +38,8 @@ const Registration = () => {
     <>
       <form onSubmit={onSubmitForm}>
         <FormControl isRequired>
-          <FormLabel htmlFor={nanoid}>Full name</FormLabel>
+          <FormLabel>Full name</FormLabel>
           <Input
-            id={nanoid}
             type="text"
             name="name"
             pattern="^[A-Za-z\u0080-\uFFFF ']+$"
@@ -50,19 +48,17 @@ const Registration = () => {
             required
             placeholder="Please enter your name"
           />
-          <FormLabel htmlFor={nanoid}>Email address</FormLabel>
+          <FormLabel>Email address</FormLabel>
           <Input
-            id={nanoid}
             type="email"
             name="email"
             autoComplete="on"
             placeholder="Please enter your email"
           />
           <FormHelperText>We'll never share your email.</FormHelperText>
-          <FormLabel htmlFor={nanoid}>Password</FormLabel>
+          <FormLabel>Password</FormLabel>
           <InputGroup size="md">
             <Input
-              id={nanoid}
               name="password"
               pr="4.5rem"
               type={show ? 'text' : 'password'}

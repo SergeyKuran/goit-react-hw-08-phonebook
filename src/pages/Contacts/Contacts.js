@@ -1,24 +1,22 @@
 import { ContactForm } from 'components/ContactForm/ContactForm';
-import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from 'redux/contacts/fetch';
+import { useSelector } from 'react-redux';
 import { getIsLoading } from 'redux/contacts/selector';
+import { Div } from './Contacts.styled';
 
 const Contacts = () => {
-  const dispath = useDispatch();
   const isLoading = useSelector(getIsLoading);
-
-  useEffect(() => {
-    dispath(fetchContacts());
-  }, [dispath]);
 
   return (
     <>
-      <ContactForm />
-      <Filter />
-      <div>{isLoading && <ContactList />}</div>
+      <Div>
+        <div>
+          <title>Your contacts</title>
+        </div>
+        <div>{isLoading && 'Yours request in progress...'}</div>
+        <Filter />
+        <ContactForm />
+      </Div>
     </>
   );
 };

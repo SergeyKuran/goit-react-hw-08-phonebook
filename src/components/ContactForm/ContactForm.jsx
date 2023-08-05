@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/fetch';
 import { getContacts } from 'redux/contacts/selector';
-import Notiflix from 'notiflix';
 import { Button, Form, Input, Label } from './ContactForm.styled';
 import { ContactList } from 'components/ContactList/ContactList';
+import Notiflix from 'notiflix';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -36,7 +36,7 @@ export const ContactForm = () => {
       el => el.name.toLowerCase() === name.toLowerCase()
     );
 
-    if (find && []) {
+    if (find) {
       return Notiflix.Notify.warning(`${name} is already in contacts`);
     }
     Notiflix.Notify.success('Operation success!');
